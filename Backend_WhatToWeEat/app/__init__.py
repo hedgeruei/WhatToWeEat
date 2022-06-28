@@ -17,8 +17,8 @@ def creat_app(config_name : str) -> Flask:
     app = Flask(__name__, instance_relative_config = True)
     config[config_name].init_app(app)
 
-    @app.route("/")
-    def index():
-        return "hello"
+    # register blueprint
+    from .main import main as main_blueprint
+    app.register_blueprint(main_blueprint)
 
     return app
